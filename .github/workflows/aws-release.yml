@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: [ubuntu-latest]
-     steps:
+    steps:
       - name: Checkout source
         uses: actions/checkout@v2
 
@@ -21,6 +21,15 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t phoenixfire16/reactapp:latest .
+
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Build docker image
+        run: docker build -t phoenixfire16/reactapp .
+
+      - name: Publish to docker hub
+        run: docker push phoenixfire16/reactapp:latest
 
   deploy:
     needs: build
