@@ -1,0 +1,30 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+     steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Docker image
+        run: docker build -t phoenixfire16/reactapp:latest .
+
+  deploy:
+    needs: build
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull phoenixfire16/reactapp:latest

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import './App.css';
-import { Button, Container, Row, Col } from "reactstrap"
+import { Container, Row, Col } from "reactstrap"
 import {ToastContainer, toast} from "react-toastify"
 import Home from './componenets/Home';
 import Header from './componenets/Header';
