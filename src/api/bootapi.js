@@ -1,2 +1,2 @@
-const base_url = "http://35.154.180.219:8080"
+const base_url = "http://13.232.223.135:8080"
 export default base_url;
